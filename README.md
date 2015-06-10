@@ -15,65 +15,39 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+Installs Greg Neagle's Reposado (https://github.com/wdas/reposado) on an Ubuntu server. Reposado is an open-source OS X Software Update Server.
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+This module sets up syncing of OS X updates through reposado, and, optionally, an Apache Vhost to allow for replication of those updates.
 
 ## Setup
 
 ### What reposado affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+* Make sure ``base_dir`` is large enough to be able to hold all updates (my server is currently holding 232 Gb worth of updates).
+* ``reposado::apache_vhost`` includes ``puppetlabs/apache``.
 
 ### Beginning with reposado
 
-The very basic steps needed for a user to get the module up and running.
+Minimal usage:
+```puppet
+class { 'reposado': }
+```
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
-
-## Usage
-
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+If you wish to enable to Apache Vhost, you need to include the ``reposado::apache_vhost`` class:
+```puppet
+class { 'reposado::apache_vhost': }
+```
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+The module uses ``puppetlabs/vcsrepo`` to clone https://github.com/wdas/reposado. 
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Currently only tested on Ubuntu 14.04.
 
-## Development
+## Release Notes
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+First release, might not work. No fancy options yet.
