@@ -21,7 +21,7 @@ class reposado (
   $server_name     = $::reposado::params::server_name,
   $manage_user     = true,
   $manage_group    = true,
-  $manage_git      = true,
+  $manage_git      = false,
   $manage_cronjob  = true) inherits ::reposado::params {
   $reposado_root = "${base_dir}/reposado"
   $metadata_dir = "${base_dir}/metadata"
