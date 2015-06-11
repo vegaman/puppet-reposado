@@ -11,20 +11,23 @@
 # Copyright 2015 Gerard Kok.
 #
 class reposado (
-  $user                   = $::reposado::params::user,
-  $group                  = $::reposado::params::group,
-  $base_dir               = $::reposado::params::base_dir,
-  $git_source             = $::reposado::params::git_source,
-  $git_revision           = $::reposado::params::git_revision,
-  $reposado_root          = $::reposado::params::reposado_root,
-  $metadata_dir           = $::reposado::params::metadata_dir,
-  $document_root          = $::reposado::params::document_root,
-  $cronjob_time           = $::reposado::params::cronjob_time,
-  $local_catalog_url_base = $::reposado::params::local_catalog_url_base,
-  $manage_user            = true,
-  $manage_group           = true,
-  $manage_git             = true,
-  $manage_cronjob         = true) inherits ::reposado::params {
+  $user            = $::reposado::params::user,
+  $group           = $::reposado::params::group,
+  $base_dir        = $::reposado::params::base_dir,
+  $git_source      = $::reposado::params::git_source,
+  $git_revision    = undef,
+  $cronjob_time    = $::reposado::params::cronjob_time,
+  $cronjob_command = $::reposado::params::cronjob_command,
+  $server_name     = $::reposado::params::server_name,
+  $manage_user     = true,
+  $manage_group    = true,
+  $manage_git      = true,
+  $manage_cronjob  = true) inherits ::reposado::params {
+  $reposado_root = "${base_dir}/reposado"
+  $metadata_dir = "${base_dir}/metadata"
+  $document_root = "${base_dir}/html"
+  $local_catalog_url_base = "http://${server_name}"
+
   if $manage_group {
     group { $group: ensure => 'present'; }
   }
@@ -48,7 +51,7 @@ class reposado (
     $cronjob_minute = $cronjob_time_as_array[1]
 
     cron { 'repo_sync':
-      command => "${reposado_root}/code/repo_sync",
+      command => $cronjob_command,
       user    => $user,
       hour    => $cronjob_hour,
       minute  => $cronjob_minute;

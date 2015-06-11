@@ -1,7 +1,7 @@
 class reposado::apache_vhost (
   $user          = $::reposado::params::user,
   $group         = $::reposado::params::group,
-  $document_root = $::reposado::params::document_root,
+  $document_root = "${::reposado::params::base_dir}/html",
   $server_name   = $::reposado::params::server_name) inherits ::reposado::params 
 {
   include ::apache
