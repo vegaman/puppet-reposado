@@ -6,4 +6,5 @@ class reposado::params {
   $cronjob_command = '/srv/reposado/reposado/code/repo_sync'
   $server_name = "${::hostname}.${::domain}"
   $git_source = 'https://github.com/wdas/reposado'
+  $git_ensure = 'present'
 }

@@ -15,6 +15,7 @@ class reposado (
   $group           = $::reposado::params::group,
   $base_dir        = $::reposado::params::base_dir,
   $git_source      = $::reposado::params::git_source,
+  $git_ensure      = $::reposado::params::git_ensure,
   $git_revision    = undef,
   $cronjob_time    = $::reposado::params::cronjob_time,
   $cronjob_command = $::reposado::params::cronjob_command,
@@ -59,7 +60,7 @@ class reposado (
   }
 
   vcsrepo { $reposado_root:
-    ensure   => 'present',
+    ensure   => $git_ensure,
     owner    => $user,
     group    => $group,
     provider => 'git',
