@@ -8,13 +8,13 @@
     <string><%= @metadata_dir -%></string>
     <key>UpdatesRootDir</key>
     <string><%= @document_root -%></string>
-    <% unless @apple_catalogs.empty? -%>
+<% unless @apple_catalogs.empty? -%>
     <key>AppleCatalogURLs</key>
     <array>
-        <% @apple_catalogs.each do |cat| -%>
+<% @apple_catalogs.each do |cat| -%>
         <string>http://swscan.apple.com/content/catalogs/others/index-<%= cat -%>.merged-1.sucatalog</string>
-        <% end -%>
+<% end -%>
     </array>
-    <% end -%>
+<% end -%>
 </dict>
 </plist>
