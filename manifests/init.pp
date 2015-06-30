@@ -23,7 +23,8 @@ class reposado (
   $manage_user     = true,
   $manage_group    = true,
   $manage_git      = false,
-  $manage_cronjob  = true) inherits ::reposado::params {
+  $manage_cronjob  = true,
+  $apple_catalogs  = []) inherits ::reposado::params {
   $reposado_root = "${base_dir}/reposado"
   $metadata_dir = "${base_dir}/metadata"
   $document_root = "${base_dir}/html"
