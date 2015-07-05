@@ -11,8 +11,8 @@
 <% unless @apple_catalogs.empty? -%>
     <key>AppleCatalogURLs</key>
     <array>
-<% @apple_catalogs.each do |cat| -%>
-        <string>http://swscan.apple.com<%= @catalog_urls[cat] -%>.sucatalog</string>
+<% @catalog_urls.each do |cat| -%>
+        <string>http://swscan.apple.com<%= cat -%>.sucatalog</string>
 <% end -%>
     </array>
 <% end -%>
