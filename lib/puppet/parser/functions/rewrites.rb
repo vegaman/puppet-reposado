@@ -1,5 +1,5 @@
 def rewrite_cond(os_name)
-  darwin_version = os_minor_version(os_name) + 4
+  darwin_version = function_os_minor_version([os_name]) + 4
   "%{HTTP_USER_AGENT} Darwin/#{darwin_version}"
 end
 
