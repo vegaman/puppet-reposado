@@ -23,7 +23,7 @@ class reposado::apache_vhost (
         require        => 'all granted'
       }
       ],
-    rewrites      => $rewrite_rules,
+#    rewrites      => $rewrite_rules,
     servername    => $server_name;
   }
 }
