@@ -36,25 +36,6 @@ def os_name_in_catalog_url(os_minor_version)
   end
 end
 
-def darwin_version(os_name)
-  case os_name
-  when 'leopard', '10.5'
-    9
-  when 'snowleopard', '10.6'
-    10
-  when 'lion', '10.7'
-    11
-  when 'mountainlion', '10.8'
-    12
-  when 'mavericks', '10.9'
-    13
-  when 'yosemite', '10.10'
-    14
-  else
-    15
-  end
-end
-
 def catalog_url(os_name)
   os_minor_versions = (5..os_minor_version(os_name)).to_a.reverse
   url = os_minor_versions.map { |o| os_name_in_catalog_url(o) }.join('-')
