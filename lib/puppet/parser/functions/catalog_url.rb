@@ -19,9 +19,14 @@ end
 
 module Puppet::Parser::Functions
   newfunction(:catalog_url, :type => :rvalue) do |args|
-    os_minor_version = function_os_minor_version([args[0]])
-    os_minor_versions = (5..os_minor_version).to_a.reverse
-    url = os_minor_versions.map { |o| os_name_in_catalog_url(o) }.join('-')
-    "/content/catalogs/others/index-#{url}.merged-1"
+    os_name = args[0]
+    if os_name == 'tiger' or os_name =='10.4'
+      "/content/catalogs/index"
+    else
+      os_minor_version = function_os_minor_version([os_name])
+      os_minor_versions = (5..os_minor_version).to_a.reverse
+      url = os_minor_versions.map { |o| os_name_in_catalog_url(o) }.join('-')
+      "/content/catalogs/others/index-#{url}.merged-1"
+    end
   end
 end

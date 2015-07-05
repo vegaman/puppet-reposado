@@ -14,7 +14,7 @@ end
 
 module Puppet::Parser::Functions
   newfunction(:rewrites, :type => :rvalue) do |args|
-    os_names = args[0]
+    os_names = args[0].empty? ? (4..11).to_a.map{ |o| "10.#{o}" } : args[0]
     os_names.map { |o| rewrite(o) }
   end
 end
