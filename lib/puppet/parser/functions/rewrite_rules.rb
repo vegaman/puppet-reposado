@@ -16,6 +16,7 @@ end
 
 module Puppet::Parser::Functions
   newfunction(:rewrite_rules, :type => :rvalue) do |args|
+    info("args[0]: #{args[0]}")
     os_names = args[0]
     os_names.map { |o| rewrite(o) }
   end
