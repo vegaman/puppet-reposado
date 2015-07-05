@@ -55,15 +55,13 @@ def darwin_version(os_name)
   end
 end
 
-
 def catalog_url(os_name)
   os_minor_versions = (5..os_minor_version(os_name)).to_a.reverse
   '/content/catalogs/others/index-' + os_minor_versions.map { |o| os_name_in_catalog_url(o) }.join('-') + '.merged-1'
 end
 
 def rewrite_condition(os_name)
-  darwin_version = darwin_version(os_name)
-  "#{darwin_version}"
+  ""
 end
 
 def rewrite_rule(os_name)
