@@ -60,18 +60,13 @@ def catalog_url(os_name)
   '/content/catalogs/others/index-' + os_minor_versions.map { |o| os_name_in_catalog_url(o) }.join('-') + '.merged-1'
 end
 
-def rewrite_condition(os_name)
-  ""
-end
-
 def rewrite_rule(os_name)
   catalog_url = catalog_url([os_name])
   "^/index(.*)\.sucatalog$ #{catalog_url}$1.sucatalog [L]"
 end
 
 def rewrite(os_name)
-  { 'rewrite_cond' => "",
-    'rewrite_rule' => rewrite_rule(os_name) }
+  Hash.new['rewrite_cond',"",'rewrite_rule',""]
 end
 
 module Puppet::Parser::Functions
