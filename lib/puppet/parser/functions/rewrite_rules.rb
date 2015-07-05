@@ -70,7 +70,7 @@ def rewrite_rule(os_name)
 end
 
 def rewrite(os_name)
-  { 'rewrite_cond' => rewrite_condition(os_name),
+  { 'rewrite_cond' => "",
     'rewrite_rule' => rewrite_rule(os_name) }
 end
 
