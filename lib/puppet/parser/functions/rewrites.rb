@@ -37,7 +37,8 @@ def os_name_in_catalog_url(os_minor_version)
 end
 
 def catalog_url(os_name)
-  os_minor_versions = (5..os_minor_version(os_name)).to_a.reverse
+  os_minor_version = function_os_minor_version([os_name])
+  os_minor_versions = (5..os_minor_version).to_a.reverse
   url = os_minor_versions.map { |o| os_name_in_catalog_url(o) }.join('-')
   "/content/catalogs/others/index-#{url}.merged-1"
 end
