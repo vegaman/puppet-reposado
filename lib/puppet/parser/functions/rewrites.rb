@@ -66,13 +66,13 @@
 #  "^/index(.*)\.sucatalog$ #{catalog_url}$1.sucatalog [L]"
 #end
 #
-#def rewrite(os_name)
-#  Hash.new['rewrite_cond',"",'rewrite_rule',""]
-#end
+def rewrite(os_name)
+  { "rewrite_cond" => "", "rewrite_rule" => "" }
+end
 
 module Puppet::Parser::Functions
-  newfunction(:rewrite_rules, :type => :rvalue) do |args|
-    info("args[0]: #{args[0]}")
-    []
+  newfunction(:rewrites, :type => :rvalue) do |args|
+    os_names = args[0]
+    os_names.map { |o| rewrite(o) }
   end
 end

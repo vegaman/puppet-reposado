@@ -11,7 +11,7 @@ class reposado::apache_vhost (
 
   notice("apple_catalogs: ${apple_catalogs}")
 
-  $rewrite_rules = rewrite_rules($apple_catalogs)
+  $rewrite_rules = rewrites($apple_catalogs)
 
   notice("rewrite_rules: ${rewrite_rules}")
 
