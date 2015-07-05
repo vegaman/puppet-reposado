@@ -57,7 +57,8 @@ end
 
 def catalog_url(os_name)
   os_minor_versions = (5..os_minor_version(os_name)).to_a.reverse
-  '/content/catalogs/others/index-' + os_minor_versions.map { |o| os_name_in_catalog_url(o) }.join('-') + '.merged-1'
+  url = os_minor_versions.map { |o| os_name_in_catalog_url(o) }.join('-')
+  "/content/catalogs/others/index-#{url}.merged-1"
 end
 
 def rewrite_rule(os_name)
