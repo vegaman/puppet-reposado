@@ -9,7 +9,7 @@ class reposado::apache_vhost (
 
   $rewrite_rules = rewrite_rules($apple_catalogs)
 
-  notice("rewrite_rules: ${rewrite_rules}")
+  notify { "rewrite_rules: ${rewrite_rules}": }
 
   ::apache::vhost { $server_name:
     port          => '80',
@@ -23,7 +23,7 @@ class reposado::apache_vhost (
         require        => 'all granted'
       }
       ],
-#    rewrites      => $rewrite_rules,
+    #    rewrites      => $rewrite_rules,
     servername    => $server_name;
   }
 }
