@@ -42,7 +42,7 @@ def catalog_url(os_name)
 end
 
 def rewrite_condition(os_name)
-  darwin_version = os_minor_version(version).to_i + 4
+  darwin_version = (os_minor_version(version).to_i + 4).to_s
   "%{HTTP_USER_AGENT} Darwin/#{darwin_version}"
 end
 
