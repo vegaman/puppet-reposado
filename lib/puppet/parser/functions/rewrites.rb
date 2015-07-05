@@ -62,7 +62,7 @@ def catalog_url(os_name)
 end
 
 def rewrite_rule(os_name)
-  catalog_url = catalog_url([os_name])
+  catalog_url = catalog_url(os_name)
   "^/index(.*)\.sucatalog$ #{catalog_url}$1.sucatalog [L]"
 end
 
