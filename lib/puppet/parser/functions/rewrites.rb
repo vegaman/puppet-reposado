@@ -1,22 +1,3 @@
-def os_minor_version(os_name)
-  case os_name
-  when 'leopard', '10.5'
-    5
-  when 'snowleopard', '10.6'
-    6
-  when 'lion', '10.7'
-    7
-  when 'mountainlion', '10.8'
-    8
-  when 'mavericks', '10.9'
-    9
-  when 'yosemite', '10.10'
-    10
-  else
-    11
-  end
-end
-
 def os_name_in_catalog_url(os_minor_version)
   case os_minor_version
   when 5
@@ -49,7 +30,7 @@ def rewrite_cond(os_name)
 end
 
 def rewrite_rule(os_name)
-  catalog_url = catalog_url(os_name)
+  catalog_url = function_catalog_url([os_name])
   "^/index(.*)\.sucatalog$ #{catalog_url}$1.sucatalog [L]"
 end
 
