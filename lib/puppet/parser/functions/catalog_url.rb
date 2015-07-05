@@ -18,7 +18,7 @@ def os_name_in_catalog_url(os_minor_version)
 end
 
 module Puppet::Parser::Functions
-  newfunction(:catalog_urls, :type => :rvalue) do |args|
+  newfunction(:catalog_url, :type => :rvalue) do |args|
     os_minor_version = function_os_minor_version([args[0]])
     os_minor_versions = (5..os_minor_version).to_a.reverse
     url = os_minor_versions.map { |o| os_name_in_catalog_url(o) }.join('-')
