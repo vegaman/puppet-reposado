@@ -12,7 +12,7 @@
     <key>AppleCatalogURLs</key>
     <array>
 <% @apple_catalogs.each do |cat| -%>
-        <string>http://swscan.apple.com/content/catalogs/others/index-<%= cat -%>.merged-1.sucatalog</string>
+        <string>http://swscan.apple.com<%= @catalogs_utls[cat] -%>.sucatalog</string>
 <% end -%>
     </array>
 <% end -%>

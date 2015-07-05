@@ -29,6 +29,7 @@ class reposado (
   $metadata_dir = "${base_dir}/metadata"
   $document_root = "${base_dir}/html"
   $local_catalog_url_base = "http://${server_name}"
+  $catalog_urls = catalog_urls($apple_catalogs)
 
   if $manage_group {
     group { $group: ensure => 'present'; }
