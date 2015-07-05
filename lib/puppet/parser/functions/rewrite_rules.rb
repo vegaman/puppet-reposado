@@ -63,7 +63,7 @@ end
 
 def rewrite_condition(os_name)
   darwin_version = darwin_version(os_name)
-  "%{HTTP_USER_AGENT} Darwin/#{darwin_version}"
+  "#{darwin_version}"
 end
 
 def rewrite_rule(os_name)
