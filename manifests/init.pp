@@ -31,6 +31,8 @@ class reposado (
   $local_catalog_url_base = "http://${server_name}"
   $catalog_urls = catalog_urls($apple_catalogs)
 
+  notice("catalog_urls: ${catalog_urls}")
+
   if $manage_group {
     group { $group: ensure => 'present'; }
   }
