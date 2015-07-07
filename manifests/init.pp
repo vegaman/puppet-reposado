@@ -11,20 +11,24 @@
 # Copyright 2015 Gerard Kok.
 #
 class reposado (
-  $user            = $::reposado::params::user,
-  $group           = $::reposado::params::group,
-  $base_dir        = $::reposado::params::base_dir,
-  $git_source      = $::reposado::params::git_source,
-  $git_ensure      = $::reposado::params::git_ensure,
-  $git_revision    = undef,
-  $cronjob_time    = $::reposado::params::cronjob_time,
-  $cronjob_command = $::reposado::params::cronjob_command,
-  $server_name     = $::reposado::params::server_name,
-  $manage_user     = true,
-  $manage_group    = true,
-  $manage_git      = false,
-  $manage_cronjob  = true,
-  $apple_catalogs  = []) inherits ::reposado::params {
+  $user                    = $::reposado::params::user,
+  $group                   = $::reposado::params::group,
+  $base_dir                = $::reposado::params::base_dir,
+  $git_source              = $::reposado::params::git_source,
+  $git_ensure              = $::reposado::params::git_ensure,
+  $git_revision            = undef,
+  $cronjob_time            = $::reposado::params::cronjob_time,
+  $cronjob_command         = $::reposado::params::cronjob_command,
+  $server_name             = $::reposado::params::server_name,
+  $manage_user             = true,
+  $manage_group            = true,
+  $manage_git              = false,
+  $manage_cronjob          = true,
+  $apple_catalogs          = [],
+  $additional_curl_options = [],
+  $preferred_localizations = [],
+  $curl_path               = undef,
+  $repo_sync_log_file      = undef) inherits ::reposado::params {
   $reposado_root = "${base_dir}/reposado"
   $metadata_dir = "${base_dir}/metadata"
   $document_root = "${base_dir}/html"

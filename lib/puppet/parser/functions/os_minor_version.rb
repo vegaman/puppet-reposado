@@ -1,7 +1,7 @@
 module Puppet::Parser::Functions
   newfunction(:os_minor_version, :type => :rvalue) do |args|
     case args[0]
-    when 'tiger', '10.4'
+    when '10.4'
       4
     when 'leopard', '10.5'
       5

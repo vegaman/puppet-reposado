@@ -16,5 +16,29 @@
 <% end -%>
     </array>
 <% end -%>
+<% unless @additional_curl_options.empty? -%>
+    <key>AdditionalCurlOptions</key>
+    <array>
+<% @additional_curl_options.each do |opt| -%>
+        <string><%= opt -%></string>
+<% end -%>
+    </array>
+<% end -%>
+<% unless @preferred_localizations.empty? -%>
+    <key>PreferredLocalizations</key>
+    <array>
+<% @preferred_localizations.each do |pref| -%>
+        <string><%= pref -%></string>
+<% end -%>
+    </array>
+<% end -%>
+<% if @curl_path -%>
+    <key>CurlPath</key>
+    <string><%- @curl_path -%></string>
+<% end -%>
+<% if @repo_sync_log_file -%>
+    <key>RepoSyncLogFile</key>
+    <string>@repo_sync_log_file</string>
+<% end -%>
 </dict>
 </plist>

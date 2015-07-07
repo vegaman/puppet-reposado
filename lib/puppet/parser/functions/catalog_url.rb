@@ -20,7 +20,7 @@ end
 module Puppet::Parser::Functions
   newfunction(:catalog_url, :type => :rvalue) do |args|
     os_name = args[0]
-    if os_name == 'tiger' or os_name =='10.4'
+    if os_name == '10.4'
       "/content/catalogs/index"
     else
       os_minor_version = function_os_minor_version([os_name])
