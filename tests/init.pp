@@ -10,3 +10,4 @@
 # http://docs.puppetlabs.com/guides/tests_smoke.html
 #
 include reposado
+include reposado::apache_vhost
