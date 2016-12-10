@@ -12,7 +12,7 @@
     <key>AppleCatalogURLs</key>
     <array>
 <% @catalog_urls.each do |cat| -%>
-        <string>http://swscan.apple.com<%= cat -%>.sucatalog</string>
+        <string><%= cat -%></string>
 <% end -%>
     </array>
 <% end -%>
@@ -34,11 +34,15 @@
 <% end -%>
 <% if @curl_path -%>
     <key>CurlPath</key>
-    <string><%- @curl_path -%></string>
+    <string><%= @curl_path -%></string>
 <% end -%>
 <% if @repo_sync_log_file -%>
     <key>RepoSyncLogFile</key>
     <string><%= @repo_sync_log_file -%></string>
+<% end -%>
+<% if @human_readable_sizes -%>
+    <key>HumanReadableSizes</key>
+    <<%= @human_readable_sizes.to_s -%>/>
 <% end -%>
 </dict>
 </plist>

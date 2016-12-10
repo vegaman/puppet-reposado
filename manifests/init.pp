@@ -28,7 +28,8 @@ class reposado (
   $additional_curl_options = [],
   $preferred_localizations = [],
   $curl_path               = undef,
-  $repo_sync_log_file      = undef) inherits ::reposado::params {
+  $repo_sync_log_file      = undef,
+  $human_readable_sizes    = undef) inherits ::reposado::params {
   $reposado_root = "${base_dir}/reposado"
   $metadata_dir = "${base_dir}/metadata"
   $document_root = "${base_dir}/html"

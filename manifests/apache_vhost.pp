@@ -3,6 +3,7 @@ class reposado::apache_vhost (
   $group          = $::reposado::params::group,
   $document_root  = "${::reposado::params::base_dir}/html",
   $server_name    = $::reposado::params::server_name,
+  $server_port    = $::reposado::params::server_port,
   $apple_catalogs = []) inherits ::reposado::params {
   include ::apache
   include ::apache::mod::rewrite
@@ -10,7 +11,7 @@ class reposado::apache_vhost (
   $rewrite_rules = rewrites($apple_catalogs)
 
   ::apache::vhost { $server_name:
-    port          => '80',
+    port          => $server_port,
     docroot       => $document_root,
     docroot_owner => $user,
     docroot_group => $group,

@@ -5,6 +5,7 @@ class reposado::params {
   $cronjob_time = '0:30'
   $cronjob_command = '/srv/reposado/reposado/code/repo_sync'
   $server_name = "${::hostname}.${::domain}"
+  $server_port = '80'
   $git_source = 'https://github.com/wdas/reposado'
   $git_ensure = 'present'
 }

@@ -14,7 +14,7 @@ def os_name_in_catalog_url(os_minor_version)
     '10.10'
   when 11
     '10.11'
-  else 
+  else
     '10.12'
   end
 end
@@ -22,8 +22,12 @@ end
 module Puppet::Parser::Functions
   newfunction(:catalog_url, :type => :rvalue) do |args|
     os_name = args[0]
-    if os_name == '10.4'
+    case os_name
+    when '10.4'
       "/content/catalogs/index"
+    when '10.6', 'snowleopard'
+      # doesn't follow the usual pattern
+      "/content/catalogs/others/index-leopard-snowleopard.merged-1"
     else
       os_minor_version = function_os_minor_version([os_name])
       os_minor_versions = (5..os_minor_version).to_a.reverse
