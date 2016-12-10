@@ -2,6 +2,9 @@ fixtures:
   repositories:
     stdlib:
       repo: 'git://github.com/puppetlabs/puppetlabs-stdlib.git'
-      ref: '4.1.0'
+    vcsrepo:
+      repo: 'git://github.com/puppetlabs/puppetlabs-vcsrepo.git'
+    apache:
+      repo: 'git://github.com/puppetlabs/puppetlabs-apache.git'
   symlinks:
     reposado: "#{source_dir}"
