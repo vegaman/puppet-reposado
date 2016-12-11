@@ -10,7 +10,7 @@ class reposado::apache_vhost (
 
   $rewrite_rules = rewrites($apple_catalogs)
 
-  ::apache::vhost { $server_name:
+  apache::vhost { $server_name:
     port          => $server_port,
     docroot       => $document_root,
     docroot_owner => $user,
