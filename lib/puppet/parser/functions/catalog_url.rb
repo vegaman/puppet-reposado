@@ -14,8 +14,10 @@ def os_name_in_catalog_url(os_minor_version)
     '10.10'
   when 11
     '10.11'
-  else
+  when 12
     '10.12'
+  else
+    '10.13'
   end
 end
 

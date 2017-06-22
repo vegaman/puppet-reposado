@@ -17,8 +17,10 @@ module Puppet::Parser::Functions
       10
     when 'elcapitan', '10.11'
       11
-    else
+    when 'sierra', '10.12'
       12
+    else
+      13
     end
   end
 end
