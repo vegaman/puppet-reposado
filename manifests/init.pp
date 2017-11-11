@@ -23,6 +23,7 @@ class reposado (
   $manage_user             = true,
   $manage_group            = true,
   $manage_git              = false,
+  $manage_python           = false,
   $manage_cronjob          = true,
   $apple_catalogs          = [],
   $additional_curl_options = [],
@@ -51,6 +52,10 @@ class reposado (
 
   if $manage_git {
     package { 'git': ensure => 'present'; }
+  }
+
+  if $manage_python {
+    package { 'python': ensure => 'present'; }
   }
 
   if $manage_cronjob {
