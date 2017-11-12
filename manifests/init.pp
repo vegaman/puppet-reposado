@@ -14,6 +14,7 @@ class reposado (
   String $user                           = $::reposado::params::user,
   String $group                          = $::reposado::params::group,
   String $base_dir                       = $::reposado::params::base_dir,
+  String $document_root                  = $::reposado::params::document_root,
   String $git_source                     = $::reposado::params::git_source,
   String $git_ensure                     = $::reposado::params::git_ensure,
   Optional[String] $git_revision         = $::reposado::params::git_revision,
