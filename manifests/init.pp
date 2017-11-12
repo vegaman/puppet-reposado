@@ -93,7 +93,7 @@ class reposado (
       owner   => $user,
       group   => $group,
       mode    => '0644',
-      content => template('reposado/preferences.plist.erb'),
+      content => epp('reposado/preferences.plist.epp'),
       require => Vcsrepo[$reposado_root];
 
     $document_root:

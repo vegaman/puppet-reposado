@@ -1,0 +1,49 @@
+<% include stdlib -%>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>LocalCatalogURLBase</key>
+    <string><%= $reposado::local_catalog_url_base -%></string>
+    <key>UpdatesMetadataDir</key>
+    <string><%= $reposado::metadata_dir -%></string>
+    <key>UpdatesRootDir</key>
+    <string><%= $reposado::document_root -%></string>
+<% unless $reposado::catalog_urls.empty { -%>
+    <key>AppleCatalogURLs</key>
+    <array>
+<% $reposado::catalog_urls.each |String $cat| { -%>
+        <string><%= $cat -%></string>
+<% } -%>
+    </array>
+<% } -%>
+<% unless $reposado::additional_curl_options.empty { -%>
+    <key>AdditionalCurlOptions</key>
+    <array>
+<% $reposado::additional_curl_options.each |String $opt| { -%>
+        <string><%= $opt -%></string>
+<% } -%>
+    </array>
+<% } -%>
+<% unless $reposado::preferred_localizations.empty { -%>
+    <key>PreferredLocalizations</key>
+    <array>
+<% $reposado::preferred_localizations.each |String $pref| { -%>
+        <string><%= $pref -%></string>
+<% } -%>
+    </array>
+<% } -%>
+<% if $reposado::curl_path { -%>
+    <key>CurlPath</key>
+    <string><%= $reposado::curl_path -%></string>
+<% } -%>
+<% if $reposado::repo_sync_log_file { -%>
+    <key>RepoSyncLogFile</key>
+    <string><%= $reposado::repo_sync_log_file -%></string>
+<% } -%>
+<% if $reposado::human_readable_sizes { -%>
+    <key>HumanReadableSizes</key>
+    <<%= $reposado::human_readable_sizes.bool2str -%>/>
+<% } -%>
+</dict>
+</plist>
