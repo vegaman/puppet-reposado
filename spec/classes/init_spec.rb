@@ -7,6 +7,7 @@ describe 'reposado' do
       :domain => 'my.domain'
     }
   end
+
   context 'with defaults for all parameters' do
     it { is_expected.to compile }
     it { is_expected.to contain_class('reposado') }
@@ -80,5 +81,18 @@ describe 'reposado' do
     end
 
     it { is_expected.to contain_file('/srv/reposado/reposado/code/preferences.plist').with_content(preferences) }
+  end
+
+  context 'without managing user and group' do
+    let(:params) do
+      {
+        :manage_user  => false,
+        :manage_group => false
+      }
+    end
+
+    it { is_expected.to compile }
+    it { is_expected.to_not contain_user('reposado') }
+    it { is_expected.to_not contain_group('reposado') }
   end
 end

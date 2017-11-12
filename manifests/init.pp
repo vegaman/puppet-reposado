@@ -37,15 +37,21 @@ class reposado (
   $catalog_urls = catalog_urls($apple_catalogs)
 
   if $manage_group {
-    group { $group: ensure => 'present'; }
+    group {
+      $group:
+        ensure => 'present',
+        before => Vcsrepo[$reposado_root];
+    }
   }
 
   if $manage_user {
-    user { $user:
-      ensure => 'present',
-      shell  => '/bin/bash',
-      home   => $base_dir,
-      gid    => $group;
+    user {
+      $user:
+        ensure => 'present',
+        shell  => '/bin/bash',
+        home   => $base_dir,
+        gid    => $group,
+        before => Vcsrepo[$reposado_root];
     }
   }
 
@@ -69,7 +75,6 @@ class reposado (
     owner    => $user,
     group    => $group,
     provider => 'git',
-    require  => [User[$user], Group[$group]],
     source   => $git_source,
     revision => $git_revision;
   }
