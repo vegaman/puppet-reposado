@@ -11,28 +11,27 @@
 # Copyright 2015 Gerard Kok.
 #
 class reposado (
-  $user                    = $::reposado::params::user,
-  $group                   = $::reposado::params::group,
-  $base_dir                = $::reposado::params::base_dir,
-  $git_source              = $::reposado::params::git_source,
-  $git_ensure              = $::reposado::params::git_ensure,
-  $git_revision            = undef,
-  $cronjob_time            = $::reposado::params::cronjob_time,
-  $cronjob_command         = $::reposado::params::cronjob_command,
-  $server_name             = $::reposado::params::server_name,
-  $manage_user             = true,
-  $manage_group            = true,
-  $manage_cronjob          = true,
-  $packages                = $::reposado::params::packages,
-  $apple_catalogs          = [],
-  $additional_curl_options = [],
-  $preferred_localizations = [],
-  $curl_path               = undef,
-  $repo_sync_log_file      = undef,
-  $human_readable_sizes    = undef) inherits ::reposado::params {
+  String $user                           = $::reposado::params::user,
+  String $group                          = $::reposado::params::group,
+  String $base_dir                       = $::reposado::params::base_dir,
+  String $git_source                     = $::reposado::params::git_source,
+  String $git_ensure                     = $::reposado::params::git_ensure,
+  Optional[String] $git_revision         = $::reposado::params::git_revision,
+  String $cronjob_time                   = $::reposado::params::cronjob_time,
+  String $cronjob_command                = $::reposado::params::cronjob_command,
+  String $server_name                    = $::reposado::params::server_name,
+  Boolean $manage_user                   = $::reposado::params::manage_user,
+  Boolean $manage_group                  = $::reposado::params::manage_group,
+  Boolean $manage_cronjob                = $::reposado::params::manage_cronjob,
+  Array[String] $packages                = $::reposado::params::packages,
+  Array[String] $apple_catalogs          = $::reposado::params::apple_catalogs,
+  Array[String] $additional_curl_options = $::reposado::params::additional_curl_options,
+  Array[String] $preferred_localizations = $::reposado::params::preferred_localizations,
+  Optional[String] $curl_path            = $::reposado::params::curl_path,
+  Optional[String] $repo_sync_log_file   = $::reposado::params::repo_sync_log_file,
+  Boolean $human_readable_sizes          = $::reposado::params::human_readable_sizes) inherits ::reposado::params {
   $reposado_root = "${base_dir}/reposado"
   $metadata_dir = "${base_dir}/metadata"
-  $document_root = "${base_dir}/html"
   $local_catalog_url_base = "http://${server_name}"
   $catalog_urls = catalog_urls($apple_catalogs)
 
