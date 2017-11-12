@@ -23,6 +23,7 @@ class reposado (
   $manage_user             = true,
   $manage_group            = true,
   $manage_cronjob          = true,
+  $packages                = $::reposado::params::packages,
   $apple_catalogs          = [],
   $additional_curl_options = [],
   $preferred_localizations = [],
@@ -48,7 +49,7 @@ class reposado (
     }
   }
 
-  ensure_packages(['git', 'python', 'curl'], {'ensure' => 'present'})
+  ensure_packages($packages, {'ensure' => 'present'})
 
   if $manage_cronjob {
     $cronjob_time_as_array = split($cronjob_time, ':')

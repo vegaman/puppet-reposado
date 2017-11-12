@@ -8,4 +8,5 @@ class reposado::params {
   $server_port = '80'
   $git_source = 'https://github.com/wdas/reposado'
   $git_ensure = 'present'
+  $packages = ['git', 'python', 'curl']
 }
