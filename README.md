@@ -15,11 +15,11 @@
 
 ## Overview
 
-Installs Greg Neagle's Reposado (https://github.com/wdas/reposado) on an Ubuntu server. Reposado is an open-source OS X Software Update Server.
+Installs Greg Neagle's Reposado (https://github.com/wdas/reposado) on an Ubuntu server. Reposado is an open-source macOS Software Update Server.
 
 ## Module Description
 
-This module sets up syncing of OS X updates through reposado, and, optionally, an Apache Vhost to allow for replication of those updates.
+This module sets up syncing of macOS updates through Reposado, and, optionally, an Apache vhost to allow for replication of those updates.
 
 ## Setup
 
@@ -35,7 +35,7 @@ Minimal usage:
 class { 'reposado': }
 ```
 
-If you wish to enable the Apache Vhost, you need to include the `reposado::apache_vhost` class:
+If you wish to enable the Apache vhost, you need to include the `reposado::apache_vhost` class:
 ```puppet
 class { 'reposado::apache_vhost': }
 ```
@@ -45,15 +45,14 @@ class { 'reposado::apache_vhost': }
 Example configuration through hiera:
 ~~~
 reposado::base_dir: '/var/www/reposado'
+reposado::document_root: "%{hiera('reposado::base_dir')}/html"
 reposado::git_ensure: 'latest'
 reposado::apple_catalogs:
   - '10.10'
   - '10.11'
 
-reposado::apache_vhost::document_root: "%{hiera('reposado::base_dir')}/html"
-reposado::apache_vhost::apple_catalogs:
-  - '10.10'
-  - '10.11'
+reposado::apache_vhost::document_root: "%{alias('reposado::document_root')}"
+reposado::apache_vhost::apple_catalogs: "%{alias('reposado::apple_catalogs')}"
 ~~~
 
 ## Reference
@@ -68,7 +67,7 @@ The `reposado` class takes the following:
 
 ##### `user`
 
-The user that owns the reposado files, both installed and downloaded, and runs the cron job. Default: 'reposado'.
+The user that owns the Reposado files, both installed and downloaded, and runs the cron job. Default: 'reposado'.
 
 ##### `group`
 
@@ -76,11 +75,15 @@ All reposado files belong to this group. Default: 'reposado'.
 
 ##### `base_dir`
 
-The directory that holds all reposado related files and directories. The git repository is cloned into '`base_dir`/reposado', Reposado's metadata is in '`base_dir`/metadata', and its document root is '`base_dir`/html'. Default: '/srv/reposado'.
+The directory that holds all Reposado related files and directories. The git repository is cloned into '`base_dir`/reposado', and Reposado's metadata is in '`base_dir`/metadata'. Default: '/srv/reposado'.
+
+##### `document_root`
+
+The directory where all the downloads are cached, and that serves as document root for the webserver. Default '`base_dir`/html'
 
 ##### `git_source`
 
-The git repository to clone reposado from. Default: 'https://github.com/wdas/reposado'
+The git repository to clone Reposado from. Default: 'https://github.com/wdas/reposado'
 
 ##### `git_ensure`
 
@@ -110,17 +113,17 @@ Whether puppet should manage `user`. Default: true.
 
 Whether puppet should manage `group`. Default: true.
 
-##### `manage_git`
-
-Whether puppet should manage the 'git' package. Default: false.
-
 ##### `manage_cronjob`
 
 Whether puppet should manage the sync cron job. Default: true.
 
+##### `packages`
+
+Packages that need to be installed by this module. Default: '['git', 'curl', 'python']'. 
+
 ##### `apple_catalogs`
 
-An array of operating system names, that specifies the Apple SUS catalog URLs to replicate. If left empty, this module follows the Reposado default, and replicates all available updates. The operating system names can be either the OS X version (e.g. '10.8', '10.10'), or its name (e.g. 'mountainlion', 'yosemite'). Names are lowercase, and without separating blanks, if more than one word. Default: '[]'.
+An array of operating system names, that specifies the Apple SUS catalog URLs to replicate. If left empty, this module follows the Reposado default, and replicates all available updates. The operating system names can be either the macOS version (e.g. '10.8', '10.10'), or its name (e.g. 'mountainlion', 'yosemite'). Names are lowercase, and without separating blanks, if more than one word. Default: '[]'.
 
 ##### `additional_curl_options`
 
@@ -140,7 +143,7 @@ Value of the 'RepoSyncLogFile' key in Reposado's Preferences.plist configuration
 
 ##### `human_readable_sizes`
 
-Value of the 'HumanReadableSizes' key in Reposado's Preferences.plist configuration file. Boolean, defaults to undef.
+Value of the 'HumanReadableSizes' key in Reposado's Preferences.plist configuration file. Boolean, defaults to false.
 
 #### `reposado::apache_vhost` class
 
@@ -154,7 +157,7 @@ All files in the document root belong to this group. Default: 'reposado'.
 
 ##### `document_root`
 
-Path to the document root. Default: '/src/reposado/html'.
+Path to the document root. Default: '`base_dir`/html'.
 
 ##### `server_name`
 
@@ -166,12 +169,12 @@ Apache port for this vhost.
 
 ##### `apple_catalogs`
 
-An array of operating system names, that specifies the Apple SUS catalog URLs to replicate. If left empty, this module follows the Reposado default, and replicate all available updates. The operaying system names can be either the OS X version (e.g. '10.8', '10.10'), or its name (e.g. 'mountainlion', 'yosemite'). Names are lowercase, and without separating blanks, if more than one word. Default: '[]'.
+An array of operating system names, that specifies the Apple SUS catalog URLs to replicate. If left empty, this module follows the Reposado default, and replicates all available updates. The operating system names can be either the macOS version (e.g. '10.8', '10.10'), or its name (e.g. 'mountainlion', 'yosemite'). Names are lowercase, and without separating blanks, if more than one word. Default: '[]'.
 
 ## Limitations
 
-Currently tested on Ubuntu 14.04 only.
+Currently tested on Ubuntu 14.04 and 16.04 only.
 
-## Release Notes
+## Development
 
-First release, no fancy options yet.
+Run `rake spec` to run all tests.

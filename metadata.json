@@ -1,6 +1,6 @@
 {
     "name": "gerardkok-reposado",
-    "version": "0.2.1",
+    "version": "1.0.0",
     "author": "gerardkok",
     "summary": "This module sets up a Reposado service.",
     "license": "Apache-2.0",
@@ -9,7 +9,7 @@
     "issues_url": "https://github.com/gerardkok/puppet-reposado/issues",
     "operatingsystem_support": [{
             "operatingsystem": "Ubuntu",
-            "operatingsystemrelease": [ "14.04"
+            "operatingsystemrelease": [ "14.04", "16.04"
             ]
         }
     ],
@@ -23,6 +23,11 @@
             "name": "puppetlabs/apache",
             "version_requirement": ">= 1.3.0 < 3.0.0"
         }
-    ]
+    ],
+    "requirements": [{
+        "name": "puppet",
+        "version_requirement": ">= 4.0.0 < 6.0.0"
+    }
+]
 }
 
