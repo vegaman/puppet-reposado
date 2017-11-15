@@ -33,7 +33,8 @@ describe 'reposado::apache_vhost' do
         { "rewrite_cond" => "%{HTTP_USER_AGENT} Darwin/13", "rewrite_rule" => "^/index(.*)\.sucatalog$ /content/catalogs/others/index-10.9-mountainlion-lion-snowleopard-leopard.merged-1$1.sucatalog [L]" },
         { "rewrite_cond" => "%{HTTP_USER_AGENT} Darwin/14", "rewrite_rule" => "^/index(.*)\.sucatalog$ /content/catalogs/others/index-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1$1.sucatalog [L]" },
         { "rewrite_cond" => "%{HTTP_USER_AGENT} Darwin/15", "rewrite_rule" => "^/index(.*)\.sucatalog$ /content/catalogs/others/index-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1$1.sucatalog [L]" },
-        { "rewrite_cond" => "%{HTTP_USER_AGENT} Darwin/16", "rewrite_rule" => "^/index(.*)\.sucatalog$ /content/catalogs/others/index-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1$1.sucatalog [L]" } ],
+        { "rewrite_cond" => "%{HTTP_USER_AGENT} Darwin/16", "rewrite_rule" => "^/index(.*)\.sucatalog$ /content/catalogs/others/index-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1$1.sucatalog [L]" },
+        { "rewrite_cond" => "%{HTTP_USER_AGENT} Darwin/17", "rewrite_rule" => "^/index(.*)\.sucatalog$ /content/catalogs/others/index-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1$1.sucatalog [L]" } ],
       'servername'    => 'reposado.my.domain' ) }
   end
 end

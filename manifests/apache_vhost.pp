@@ -1,12 +1,11 @@
 class reposado::apache_vhost (
-  $user           = $::reposado::params::user,
-  $group          = $::reposado::params::group,
-  $document_root  = "${::reposado::params::base_dir}/html",
-  $server_name    = $::reposado::params::server_name,
-  $server_port    = $::reposado::params::server_port,
-  $apple_catalogs = []) inherits ::reposado::params {
+  String $user                  = $::reposado::params::user,
+  String $group                 = $::reposado::params::group,
+  String $document_root         = $::reposado::params::document_root,
+  String $server_name           = $::reposado::params::server_name,
+  String $server_port           = $::reposado::params::server_port,
+  Array[String] $apple_catalogs = $::reposado::params::apple_catalogs) inherits ::reposado::params {
   include ::apache
-  include ::apache::mod::rewrite
 
   $rewrite_rules = rewrites($apple_catalogs)
 
