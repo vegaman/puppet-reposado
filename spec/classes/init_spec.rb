@@ -95,4 +95,26 @@ describe 'reposado' do
     it { is_expected.to_not contain_user('reposado') }
     it { is_expected.to_not contain_group('reposado') }
   end
+
+  context 'correct cronjob time format' do
+    let(:params) do
+      {
+        :cronjob_time => '12:34'
+      }
+    end
+
+    it { is_expected.to compile }
+    it { is_expected.to contain_cron('repo_sync').with_hour('12') }
+    it { is_expected.to contain_cron('repo_sync').with_minute('34') }
+  end
+
+  context 'incorrect cronjob time format' do
+    let(:params) do
+      {
+        :cronjob_time => 'foo'
+      }
+    end
+
+    it { is_expected.to_not compile }
+  end
 end

@@ -18,7 +18,7 @@ class reposado (
   String $git_source                     = $::reposado::params::git_source,
   String $git_ensure                     = $::reposado::params::git_ensure,
   Optional[String] $git_revision         = $::reposado::params::git_revision,
-  String $cronjob_time                   = $::reposado::params::cronjob_time,
+  Pattern[/\d\d?:\d\d/] $cronjob_time    = $::reposado::params::cronjob_time,
   String $cronjob_command                = $::reposado::params::cronjob_command,
   String $server_name                    = $::reposado::params::server_name,
   Boolean $manage_user                   = $::reposado::params::manage_user,
