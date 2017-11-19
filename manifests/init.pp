@@ -80,9 +80,9 @@ class reposado (
   }
 
   file {
-    [
-      $base_dir,
-      $metadata_dir]:
+    [ $base_dir,
+      $metadata_dir,
+      $document_root]:
       ensure => 'directory',
       owner  => $user,
       group  => $group,
@@ -95,11 +95,5 @@ class reposado (
       mode    => '0644',
       content => epp('reposado/preferences.plist.epp'),
       require => Vcsrepo[$reposado_root];
-
-    $document_root:
-      ensure => 'directory',
-      owner  => $user,
-      group  => $group,
-      mode   => '0775';
   }
 }
