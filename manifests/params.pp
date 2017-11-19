@@ -3,7 +3,7 @@ class reposado::params {
   $group = 'reposado'
   $base_dir = '/srv/reposado'
   $cronjob_time = '0:30'
-  $cronjob_command = "${base_dir}/reposado/code/repo_sync"
+  $cronjob_command = "repo_sync"
   $git_source = 'https://github.com/wdas/reposado'
   $git_ensure = 'present'
   $git_revision = undef

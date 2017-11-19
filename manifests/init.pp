@@ -63,10 +63,11 @@ class reposado (
     $cronjob_minute = $cronjob_time_as_array[1]
 
     cron { 'repo_sync':
-      command => $cronjob_command,
-      user    => $user,
-      hour    => $cronjob_hour,
-      minute  => $cronjob_minute;
+      command     => $cronjob_command,
+      user        => $user,
+      hour        => $cronjob_hour,
+      minute      => $cronjob_minute,
+      environment => "PATH=\${PATH}:${base_dir}/reposado/code";
     }
   }
 
