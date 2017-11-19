@@ -75,11 +75,19 @@ All reposado files belong to this group. Default: 'reposado'.
 
 ##### `base_dir`
 
-The directory that holds all Reposado related files and directories. The git repository is cloned into '`base_dir`/reposado', and Reposado's metadata is in '`base_dir`/metadata'. Default: '/srv/reposado'.
+The directory that holds all Reposado related files and directories. Default: '/srv/reposado'.
 
 ##### `document_root`
 
 The directory where all the downloads are cached, and that serves as document root for the webserver. Default '`base_dir`/html'
+
+##### `metadata_dir`
+
+The directory wherre reposado stores its metadata. Default '`base_dir`/metadata'
+
+##### `reposado_root`
+
+The directory the reposado git repository is cloned to. Default '`base_dir`/reposado'
 
 ##### `git_source`
 
@@ -99,7 +107,7 @@ The time to run the sync cron job. Format: 'HH:MM', you can omit a leading '0' i
 
 ##### `cronjob_command`
 
-The cron job command to run. Default: '/srv/reposado/reposado/code/repo_sync'. If you would like to remove deprecated updates by default, set this to '`base_dir`/reposado/code/repo_sync && `base_dir`/reposado/code/repoutil --purge-product all-deprecated', for example.
+The cron job command to run. Default: '`reposado_root`/code/repo_sync'. If you would like to remove deprecated updates by default, set this to '`reposado_root`/code/repo_sync && `reposado_root`/code/repoutil --purge-product all-deprecated', for example.
 
 ##### `server_name`
 
@@ -154,6 +162,10 @@ The user that owns the document root. Default: 'reposado'.
 ##### `group`
 
 All files in the document root belong to this group. Default: 'reposado'.
+
+##### `base_dir`
+
+The directory that holds all Reposado related files and directories. Default: '/srv/reposado'.
 
 ##### `document_root`
 
