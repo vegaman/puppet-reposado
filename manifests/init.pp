@@ -67,7 +67,7 @@ class reposado (
       user        => $user,
       hour        => $cronjob_hour,
       minute      => $cronjob_minute,
-      environment => "PATH=\${PATH}:${base_dir}/reposado/code";
+      environment => "PATH=/bin:/usr/bin:${base_dir}/reposado/code";
     }
   }
 
