@@ -95,7 +95,7 @@ Which revision to clone from the git repository. Default: undef (i.e. the HEAD r
 
 ##### `cronjob_time`
 
-The time to run the sync cron job. Format: '[HH, MM]'. Default: '[0, 30]'.
+The time to run the sync cron job. Format: 'HH:MM', you can omit a leading '0' in 'HH'. Default: '0:30'.
 
 ##### `cronjob_command`
 
