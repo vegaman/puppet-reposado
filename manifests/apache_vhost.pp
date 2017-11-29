@@ -1,7 +1,8 @@
 class reposado::apache_vhost (
   String $user                  = $::reposado::params::user,
   String $group                 = $::reposado::params::group,
-  String $document_root         = $::reposado::params::document_root,
+  String $base_dir              = $::reposado::params::base_dir,
+  String $document_root         = "${base_dir}/html",
   String $server_name           = $::reposado::params::server_name,
   String $server_port           = $::reposado::params::server_port,
   Array[String] $apple_catalogs = $::reposado::params::apple_catalogs) inherits ::reposado::params {

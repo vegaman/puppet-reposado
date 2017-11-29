@@ -30,11 +30,18 @@ describe 'reposado' do
       HEREDOC
     end
     it { is_expected.to contain_file('/srv/reposado/reposado/code/preferences.plist').with_content(preferences) }
+    it { is_expected.to contain_cron('repo_sync').with(
+      'command'     => '/srv/reposado/reposado/code/repo_sync',
+      'user'        => 'reposado',
+      'hour'        => '0',
+      'minute'      => '30'
+    ) }
   end
 
   context 'with additional parameters' do
     let(:params) do
       {
+        :base_dir                => '/var/www',
         :apple_catalogs          => ['10.9'],
         :additional_curl_options => ["proxy = \"web-proxy.yourcompany.com:8080\""],
         :preferred_localizations => ["English", "en"],
@@ -53,9 +60,9 @@ describe 'reposado' do
     <key>LocalCatalogURLBase</key>
     <string>http://reposado.my.domain</string>
     <key>UpdatesMetadataDir</key>
-    <string>/srv/reposado/metadata</string>
+    <string>/var/www/metadata</string>
     <key>UpdatesRootDir</key>
-    <string>/srv/reposado/html</string>
+    <string>/var/www/html</string>
     <key>AppleCatalogURLs</key>
     <array>
         <string>https://swscan.apple.com/content/catalogs/others/index-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog</string>
@@ -80,7 +87,8 @@ describe 'reposado' do
       HEREDOC
     end
 
-    it { is_expected.to contain_file('/srv/reposado/reposado/code/preferences.plist').with_content(preferences) }
+    it { is_expected.to contain_file('/var/www/reposado/code/preferences.plist').with_content(preferences) }
+    it { is_expected.to contain_cron('repo_sync').with_command('/var/www/reposado/code/repo_sync') }
   end
 
   context 'without managing user and group' do

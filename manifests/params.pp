@@ -3,7 +3,6 @@ class reposado::params {
   $group = 'reposado'
   $base_dir = '/srv/reposado'
   $cronjob_time = '0:30'
-  $cronjob_command = "${base_dir}/reposado/code/repo_sync"
   $git_source = 'https://github.com/wdas/reposado'
   $git_ensure = 'present'
   $git_revision = undef
@@ -19,5 +18,4 @@ class reposado::params {
   $repo_sync_log_file = undef
   $human_readable_sizes = false
   $server_port = '80'
-  $document_root = "${base_dir}/html"
 }

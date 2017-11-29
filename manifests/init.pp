@@ -14,12 +14,14 @@ class reposado (
   String $user                           = $::reposado::params::user,
   String $group                          = $::reposado::params::group,
   String $base_dir                       = $::reposado::params::base_dir,
-  String $document_root                  = $::reposado::params::document_root,
+  String $document_root                  = "${base_dir}/html",
+  String $metadata_dir                   = "${base_dir}/metadata",
+  String $reposado_root                  = "${base_dir}/reposado",
   String $git_source                     = $::reposado::params::git_source,
   String $git_ensure                     = $::reposado::params::git_ensure,
   Optional[String] $git_revision         = $::reposado::params::git_revision,
   Pattern[/\d\d?:\d\d/] $cronjob_time    = $::reposado::params::cronjob_time,
-  String $cronjob_command                = $::reposado::params::cronjob_command,
+  String $cronjob_command                = "${reposado_root}/code/repo_sync",
   String $server_name                    = $::reposado::params::server_name,
   Boolean $manage_user                   = $::reposado::params::manage_user,
   Boolean $manage_group                  = $::reposado::params::manage_group,
@@ -31,8 +33,6 @@ class reposado (
   Optional[String] $curl_path            = $::reposado::params::curl_path,
   Optional[String] $repo_sync_log_file   = $::reposado::params::repo_sync_log_file,
   Boolean $human_readable_sizes          = $::reposado::params::human_readable_sizes) inherits ::reposado::params {
-  $reposado_root = "${base_dir}/reposado"
-  $metadata_dir = "${base_dir}/metadata"
   $local_catalog_url_base = "http://${server_name}"
   $catalog_urls = catalog_urls($apple_catalogs)
 
@@ -80,9 +80,8 @@ class reposado (
   }
 
   file {
-    [
-      $base_dir,
-      $metadata_dir]:
+    [ $base_dir,
+      $metadata_dir ]:
       ensure => 'directory',
       owner  => $user,
       group  => $group,
