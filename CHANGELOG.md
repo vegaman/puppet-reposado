@@ -1,3 +1,8 @@
+## Release 1.0.1
+
+- changed 'cronjob_time' from String to Regexp, and fixed documentation
+- the default values for 'document_root', 'metadata_dir', 'reposado_root' and 'cronjob_command' now ultimately depend on 'base_dir', instead of their counterparts in params.pp
+
 ## Release 1.0.0
 
 #### Features
