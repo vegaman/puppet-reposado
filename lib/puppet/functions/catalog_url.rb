@@ -22,18 +22,20 @@ Puppet::Functions.create_function(:catalog_url) do
       '10.11'
     when 12
       '10.12'
-    else
+    when 13
       '10.13'
+    else
+      '10.14'
     end
   end
 
   def catalog_url(os_name)
     case os_name
     when '10.4'
-      "/content/catalogs/index"
+      '/content/catalogs/index'
     when '10.6', 'snowleopard'
       # doesn't follow the usual pattern
-      "/content/catalogs/others/index-leopard-snowleopard.merged-1"
+      '/content/catalogs/others/index-leopard-snowleopard.merged-1'
     else
       os_minor_version = call_function('os_minor_version', os_name)
       os_minor_versions = (5..os_minor_version).to_a.reverse

@@ -15,11 +15,11 @@ Puppet::Functions.create_function(:rewrites) do
   end
 
   def rewrite(os_name)
-    { "rewrite_cond" => rewrite_cond(os_name), "rewrite_rule" => rewrite_rule(os_name) }
+    { 'rewrite_cond' => rewrite_cond(os_name), 'rewrite_rule' => rewrite_rule(os_name) }
   end
 
   def rewrites(catalogs)
-    os_names = catalogs.empty? ? (4..13).to_a.map{ |o| "10.#{o}" } : catalogs
+    os_names = catalogs.empty? ? (4..13).to_a.map { |o| "10.#{o}" } : catalogs
     os_names.map { |o| rewrite(o) }
   end
 end
