@@ -7,7 +7,7 @@ Puppet::Functions.create_function(:catalog_urls) do
   def catalog_urls(os_names)
     os_names.map do |o|
       url = call_function('catalog_url', o)
-      protocol = url.start_with?("/content/catalogs/others/index-10") ? "https" : "http"
+      protocol = url.start_with?('/content/catalogs/others/index-10') ? 'https' : 'http'
       "#{protocol}://swscan.apple.com#{url}.sucatalog"
     end
   end

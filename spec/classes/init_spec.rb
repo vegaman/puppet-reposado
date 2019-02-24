@@ -3,8 +3,8 @@ require 'spec_helper'
 describe 'reposado' do
   let(:facts) do
     {
-      :hostname => 'reposado',
-      :domain => 'my.domain'
+      hostname: 'reposado',
+      domain: 'my.domain',
     }
   end
 
@@ -30,24 +30,26 @@ describe 'reposado' do
       HEREDOC
     end
     it { is_expected.to contain_file('/srv/reposado/reposado/code/preferences.plist').with_content(preferences) }
-    it { is_expected.to contain_cron('repo_sync').with(
-      'command'     => '/srv/reposado/reposado/code/repo_sync',
-      'user'        => 'reposado',
-      'hour'        => '0',
-      'minute'      => '30'
-    ) }
+    it {
+      is_expected.to contain_cron('repo_sync').with(
+        'command' => '/srv/reposado/reposado/code/repo_sync',
+        'user'    => 'reposado',
+        'hour'    => '0',
+        'minute'  => '30',
+      )
+    }
   end
 
   context 'with additional parameters' do
     let(:params) do
       {
-        :base_dir                => '/var/www',
-        :apple_catalogs          => ['10.9'],
-        :additional_curl_options => ["proxy = \"web-proxy.yourcompany.com:8080\""],
-        :preferred_localizations => ["English", "en"],
-        :curl_path               => "/usr/local/bin/curl",
-        :repo_sync_log_file      => "/var/log/reposado_sync.log",
-        :human_readable_sizes    => true
+        base_dir: '/var/www',
+        apple_catalogs: ['10.9'],
+        additional_curl_options: ['proxy = "web-proxy.yourcompany.com:8080"'],
+        preferred_localizations: ['English', 'en'],
+        curl_path: '/usr/local/bin/curl',
+        repo_sync_log_file: '/var/log/reposado_sync.log',
+        human_readable_sizes: true,
       }
     end
 
@@ -94,20 +96,20 @@ describe 'reposado' do
   context 'without managing user and group' do
     let(:params) do
       {
-        :manage_user  => false,
-        :manage_group => false
+        manage_user: false,
+        manage_group: false,
       }
     end
 
     it { is_expected.to compile }
-    it { is_expected.to_not contain_user('reposado') }
-    it { is_expected.to_not contain_group('reposado') }
+    it { is_expected.not_to contain_user('reposado') }
+    it { is_expected.not_to contain_group('reposado') }
   end
 
   context 'correct cronjob time format' do
     let(:params) do
       {
-        :cronjob_time => '12:34'
+        cronjob_time: '12:34',
       }
     end
 
@@ -119,10 +121,10 @@ describe 'reposado' do
   context 'incorrect cronjob time format' do
     let(:params) do
       {
-        :cronjob_time => 'foo'
+        cronjob_time: 'foo',
       }
     end
 
-    it { is_expected.to_not compile }
+    it { is_expected.not_to compile }
   end
 end
