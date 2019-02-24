@@ -1,3 +1,8 @@
+## Release 1.0.2
+
+- support for macOS 10.14 ('Mojave')
+- PDK updated to 1.9.0
+
 ## Release 1.0.1
 
 - changed 'cronjob_time' from String to Regexp, and fixed documentation
