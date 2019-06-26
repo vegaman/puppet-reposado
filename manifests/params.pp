@@ -7,6 +7,7 @@ class reposado::params {
   $git_ensure = 'present'
   $git_revision = undef
   $server_name = "${::hostname}.${::domain}"
+  $local_catalog_url_base = "http://${server_name}"
   $manage_user = true
   $manage_group = true
   $manage_cronjob = true

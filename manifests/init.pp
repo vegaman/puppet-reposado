@@ -23,6 +23,7 @@ class reposado (
   Pattern[/\d\d?:\d\d/] $cronjob_time    = $::reposado::params::cronjob_time,
   String $cronjob_command                = "${reposado_root}/code/repo_sync",
   String $server_name                    = $::reposado::params::server_name,
+  String $local_catalog_url_base         = $::reposado::params::local_catalog_url_base,
   Boolean $manage_user                   = $::reposado::params::manage_user,
   Boolean $manage_group                  = $::reposado::params::manage_group,
   Boolean $manage_cronjob                = $::reposado::params::manage_cronjob,
@@ -33,7 +34,6 @@ class reposado (
   Optional[String] $curl_path            = $::reposado::params::curl_path,
   Optional[String] $repo_sync_log_file   = $::reposado::params::repo_sync_log_file,
   Boolean $human_readable_sizes          = $::reposado::params::human_readable_sizes) inherits ::reposado::params {
-  $local_catalog_url_base = "http://${server_name}"
   $catalog_urls = catalog_urls($apple_catalogs)
 
   if $manage_group {

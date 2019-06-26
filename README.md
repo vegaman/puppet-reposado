@@ -113,6 +113,10 @@ The cron job command to run. Default: '`reposado_root`/code/repo_sync'. If you w
 
 Name of the server. Default: '`hostname`.`domain`'.
 
+##### `local_catalog_url_base`
+
+Url base for the local catalog. Override this if you need to use HTTPS. Default: 'http://`server_name`'
+
 ##### `manage_user`
 
 Whether puppet should manage `user`. Default: true.
